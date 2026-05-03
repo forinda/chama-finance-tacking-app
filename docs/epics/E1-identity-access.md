@@ -30,9 +30,10 @@ Let users sign up, log in, and land on the right surface based on their `platfor
 ## User stories
 
 ### S1.1 [P0] Email + password signup
-**As a** visitor, **I want** to sign up with email, first name, last name, and password **so that** I can create an organization.
+**As a** visitor, **I want** to sign up with email, first name, last name, gender, and password **so that** I can create an organization.
 **Acceptance criteria:**
 - Required fields: `email`, `first_name` (1–60 chars), `last_name` (1–60 chars), `password`.
+- Optional field: `gender` (`male` | `female` | `other`); defaults to `"other"` when not provided.
 - Email is unique, validated format.
 - Password ≥ 10 chars, hashed with argon2id (or bcrypt cost ≥ 12).
 - New user gets `platformRole: "user"` and `is_active: true`. Never `super_admin` via signup.
@@ -94,7 +95,7 @@ Let users sign up, log in, and land on the right surface based on their `platfor
 - DB-backed sessions chosen for revocability (needed for S1.7 — toggling `is_active` must invalidate live sessions).
 - `super_admin` seed: env-driven `SUPER_ADMIN_EMAIL`; on boot, if matching user exists, ensure `platformRole = super_admin` and `is_active = true`.
 - Layout swap lives in `app/root.tsx` loader; renders `app/layouts/tenant.tsx` or `app/layouts/admin.tsx`.
-- `User` shape (final for MVP): `{ id, email, firstName, lastName, passwordHash, platformRole, isActive, mustChangePassword, createdAt, updatedAt }`.
+- `User` shape (final for MVP): `{ id, email, firstName, lastName, gender, passwordHash, platformRole, isActive, mustChangePassword, createdAt, updatedAt }`. `gender` is an enum (`male` | `female` | `other`) with DB default `'other'`.
 - `mustChangePassword`: set when an owner creates a user via E2 S2.4; the login flow redirects to a change-password screen before granting access.
 
 ## Definition of done

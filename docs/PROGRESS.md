@@ -13,20 +13,20 @@
 ## Overall
 
 - **Stories total:** 60
-- **Done:** 0
+- **Done:** 1
 - **WIP:** 0
-- **Overall progress:** 0%
+- **Overall progress:** 1.7%
 - **MVP (P0 only) total:** 45
-- **MVP done:** 0
-- **MVP progress:** 0%
+- **MVP done:** 1
+- **MVP progress:** 2.2%
 
-_Last updated: 2026-05-03_
+_Last updated: 2026-05-03 — S1.1 done_
 
 ## Per-epic rollup
 
 | Epic | Stories | Done | WIP | % | Status |
 |---|---:|---:|---:|---:|---|
-| E1 — Identity & Access | 7 | 0 | 0 | 0% | planned |
+| E1 — Identity & Access | 7 | 1 | 0 | 14% | wip |
 | E2 — Organization Lifecycle | 9 | 0 | 0 | 0% | planned |
 | E3 — Members & Categories | 6 | 0 | 0 | 0% | planned |
 | E4 — Money Movement | 6 | 0 | 0 | 0% | planned |
@@ -41,7 +41,7 @@ _Last updated: 2026-05-03_
 ## Story status
 
 ### E1 — Identity & Access
-- [ ] `S1.1` [P0] Email + password signup (email, first name, last name, password) — **todo**
+- [x] `S1.1` [P0] Email + password signup (email, first name, last name, gender, password) — **done**
 - [ ] `S1.2` [P0] Login (rejects inactive users) — **todo**
 - [ ] `S1.3` [P0] Logout — **todo**
 - [ ] `S1.4` [P0] Layout swap by platform role — **todo**

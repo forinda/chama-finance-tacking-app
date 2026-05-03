@@ -5,3 +5,8 @@
 # React Router
 /.react-router/
 /build/
+
+# Playwright MCP artifacts (screenshots, console logs, page yaml)
+/.playwright-mcp/
+*.png
+*.jpeg
