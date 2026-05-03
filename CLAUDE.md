@@ -4,6 +4,51 @@ Stack: React Router v7 (SSR on), Tailwind v4 + Vite, shadcn/ui, TanStack Query, 
 
 Path alias: `~/*` → `./app/*`.
 
+## Documentation
+
+All product/spec docs live in `docs/`:
+
+```
+docs/
+  PRD.md            # Product requirements — index, architecture, glossary
+  PROGRESS.md       # Living status board — story state + percent complete
+  epics/
+    E1-identity-access.md
+    E2-organization-lifecycle.md
+    E3-members-categories.md
+    E4-money-movement.md
+    E5-ledger-reporting.md
+    E6-reversals-corrections.md
+    E7-audit-trail.md
+    E8-platform-admin.md
+    E9-platform-audit.md
+```
+
+Rules:
+- Each epic file is the **single source of truth** for its scope. Do not expand scope mid-epic.
+- Stories carry IDs like `S4.1` (epic 4, story 1). Reference these IDs in branches, commits, PRs, conversation.
+- When starting work, read the relevant epic file end-to-end first. The acceptance criteria are the contract.
+- "Out of scope" sections are binding — if a request strays, flag it and ask whether to add a story.
+
+## Workflow per story
+
+1. **Pick** the next story from `docs/PROGRESS.md` (P0 first).
+2. **Mark `wip`** in PROGRESS.md and update `Last updated:`.
+3. **Read** the epic file. Confirm acceptance criteria. Don't add scope.
+4. **Build**. Use `S<id>` in branch name and commits (e.g., `S4.1: record contribution form`).
+5. **Verify** acceptance criteria one by one before claiming done.
+6. **Mark `done`** in PROGRESS.md: flip `[ ]` → `[x]`, change trailing tag to `**done**`, recount the per-epic and overall rollups, bump the date.
+7. **If the epic is now fully done**, update its file's `Status:` header to `done` and reflect that in the PROGRESS rollup table.
+
+When the user asks "where are we?" or "what's the status?", read `docs/PROGRESS.md` and report the percentages — overall + MVP + per-epic.
+
+## Status states
+
+- `todo` — not started
+- `wip` — in progress
+- `done` — merged and acceptance criteria met
+- `blocked` — waiting on a decision; note the blocker inline
+
 ## Folder Layout
 
 ```
@@ -82,3 +127,9 @@ Rules:
 - `pnpm build` — production build
 - `pnpm typecheck` — `react-router typegen && tsc`
 - `pnpm format` — prettier write
+
+## Reference
+
+- Product spec: `docs/PRD.md`
+- Live status: `docs/PROGRESS.md`
+- Per-epic scope: `docs/epics/E<N>-*.md`
