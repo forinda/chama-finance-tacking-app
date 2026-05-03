@@ -28,7 +28,7 @@ import {
   memberships,
   organizations,
   type Organization,
-} from "../../../../db/schema"
+} from "@db/schema"
 import { extractRequestMeta, logAudit } from "~/lib/audit.server"
 import { db } from "~/lib/db"
 import {

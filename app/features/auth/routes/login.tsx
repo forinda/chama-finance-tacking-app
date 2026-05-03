@@ -9,7 +9,7 @@
 import { eq } from "drizzle-orm"
 import { redirect } from "react-router"
 
-import { users } from "../../../../db/schema"
+import { users } from "@db/schema"
 import { landingPathForRole } from "~/lib/auth.server"
 import { db } from "~/lib/db"
 import { getUserId } from "~/lib/session.server"

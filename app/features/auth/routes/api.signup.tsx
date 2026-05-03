@@ -18,7 +18,7 @@
 import { eq, sql } from "drizzle-orm"
 import { z } from "zod"
 
-import { users } from "../../../../db/schema"
+import { users } from "@db/schema"
 import { extractRequestMeta, logAudit } from "~/lib/audit.server"
 import { db } from "~/lib/db"
 import { hashPassword } from "~/lib/password.server"

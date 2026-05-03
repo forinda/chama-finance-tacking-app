@@ -17,7 +17,7 @@
 import { eq } from "drizzle-orm"
 import { Outlet, redirect } from "react-router"
 
-import { users } from "../../db/schema"
+import { users } from "@db/schema"
 import { db } from "~/lib/db"
 import { getUserId, logout } from "~/lib/session.server"
 

@@ -24,7 +24,7 @@
 import { eq, lt } from "drizzle-orm"
 import { createCookie, createSessionStorage, redirect } from "react-router"
 
-import { sessions, type NewSession } from "../../db/schema"
+import { sessions, type NewSession } from "@db/schema"
 import { db } from "./db"
 import { env, isProduction } from "./env.server"
 
