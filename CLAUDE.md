@@ -41,12 +41,19 @@ Rules:
 ## Workflow per story
 
 1. **Pick** the next story from `docs/PROGRESS.md` (P0 first).
-2. **Mark `wip`** in PROGRESS.md and update `Last updated:`.
-3. **Read** the epic file. Confirm acceptance criteria. Don't add scope.
-4. **Build**. Use `S<id>` in branch name and commits (e.g., `S4.1: record contribution form`).
-5. **Verify** acceptance criteria one by one before claiming done.
-6. **Mark `done`** in PROGRESS.md: flip `[ ]` → `[x]`, change trailing tag to `**done**`, recount the per-epic and overall rollups, bump the date.
-7. **If the epic is now fully done**, update its file's `Status:` header to `done` and reflect that in the PROGRESS rollup table.
+2. **Branch off `main`**: `git checkout -b feat/s<id>-<kebab-title>` (e.g. `feat/s1.1-email-password-signup`). One branch per story — never share a branch across stories. Keeps `main` clean and lets reviews stay scoped.
+3. **Mark `wip`** in PROGRESS.md and update `Last updated:` (commit this on the feature branch).
+4. **Read** the epic file. Confirm acceptance criteria. Don't add scope.
+5. **Build**. Commit with `S<id>: <subject>` prefix (e.g. `S1.1: add user signup action`).
+6. **Verify** acceptance criteria one by one before claiming done.
+7. **Mark `done`** in PROGRESS.md: flip `[ ]` → `[x]`, change trailing tag to `**done**`, recount the per-epic and overall rollups, bump the date. Commit on the feature branch.
+8. **Merge to `main`** (or open a PR; default to local merge for solo prototype phase). Delete the feature branch after merge.
+9. **If the epic is now fully done**, update its file's `Status:` header to `done` on the next branch and reflect that in the PROGRESS rollup table.
+
+Branch naming:
+- Stories: `feat/s<id>-<kebab-title>` — e.g. `feat/s4.1-record-contribution`
+- Cross-cutting epic infra (rare): `feat/e<id>-<kebab-title>` — e.g. `feat/e7-audit-log-infra`
+- Hotfixes / chores: `chore/<kebab-title>` or `fix/<kebab-title>`
 
 When the user asks "where are we?" or "what's the status?", read `docs/PROGRESS.md` and report the percentages — overall + MVP + per-epic.
 
