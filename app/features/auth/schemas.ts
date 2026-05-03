@@ -13,7 +13,7 @@ export const genderSchema = z.enum(genderValues)
 export type Gender = z.infer<typeof genderSchema>
 
 export const signupSchema = z.object({
-  email: z.string().min(1, "Email is required").email().toLowerCase().trim(),
+  email: z.email().min(1, "Email is required").toLowerCase().trim(),
   firstName: z
     .string()
     .min(1, "First name is required")
@@ -33,3 +33,16 @@ export const signupSchema = z.object({
 })
 
 export type SignupInput = z.infer<typeof signupSchema>
+
+/**
+ * Login schema — same email normalization as signup so casing never causes
+ * false-misses. Password length isn't validated client-side here (we don't
+ * want to reject legacy-or-future password lengths during login); we just
+ * require non-empty.
+ */
+export const loginSchema = z.object({
+  email: z.email().min(1, "Email is required").toLowerCase().trim(),
+  password: z.string().min(1, "Password is required"),
+})
+
+export type LoginInput = z.infer<typeof loginSchema>

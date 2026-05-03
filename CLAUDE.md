@@ -47,7 +47,7 @@ Rules:
 5. **Build**. Commit with `S<id>: <subject>` prefix (e.g. `S1.1: add user signup action`).
 6. **Verify** acceptance criteria one by one before claiming done.
 7. **Mark `done`** in PROGRESS.md: flip `[ ]` → `[x]`, change trailing tag to `**done**`, recount the per-epic and overall rollups, bump the date. Commit on the feature branch.
-8. **Merge to `main`** (or open a PR; default to local merge for solo prototype phase). Delete the feature branch after merge.
+8. **Push the branch and open a PR** on GitHub (`gh pr create`). Wait for review/merge — do not local-merge or push directly to `main`. After the PR is merged, sync local `main` (`git checkout main && git pull`) and delete the local feature branch (`git branch -d feat/s<id>-…`).
 9. **If the epic is now fully done**, update its file's `Status:` header to `done` on the next branch and reflect that in the PROGRESS rollup table.
 
 Branch naming:
