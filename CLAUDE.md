@@ -1,6 +1,14 @@
 # Project Conventions
 
-Stack: React Router v7 (SSR on), Tailwind v4 + Vite, shadcn/ui, TanStack Query, TanStack Table, Axios, Zustand.
+Stack:
+- **Framework**: React Router v7 (SSR on), Vite
+- **Styling**: Tailwind v4, shadcn/ui (`radix-ui` umbrella package only — never split `@radix-ui/react-*`)
+- **Data**: TanStack Query (server state), TanStack Table (grids), Zustand (client state)
+- **DB**: Postgres + Drizzle ORM (`drizzle-orm` runtime, `drizzle-kit` migrations, `drizzle-seed` fixtures), `postgres` driver
+- **Forms**: React Hook Form + Zod (validation) via `@hookform/resolvers`
+- **HTTP**: Axios
+- **Auth**: argon2id password hashing, DB-backed sessions
+- **Dates**: date-fns
 
 Path alias: `~/*` → `./app/*`.
 
@@ -73,20 +81,46 @@ Each feature lives in `app/features/<feature>/` and is the unit of ownership. Fi
 
 ```
 features/<feature>/
-  index.ts              # Public barrel — re-exports keys/queries/mutations
+  index.ts              # Public barrel — re-exports keys/queries/mutations/schemas + types
   keys.ts               # Query key factories
   queries.ts            # useQuery hooks + fetchers
   mutations.ts          # useMutation hooks
+  schemas.ts            # Zod schemas (input/output) + inferred types via z.infer<>
   components/           # Feature-scoped UI (optional)
   routes/               # Feature route modules (optional)
   store.ts              # Zustand store (optional)
 ```
 
-Rules:
-- Import features only via the public barrel: `import { useLoginMutation } from "~/features/auth"`.
-- Cross-feature imports go through the barrel — never reach into `queries.ts` directly.
+### Schemas + types (domain-bound)
+
+- One `schemas.ts` per feature. Holds all Zod schemas for that domain (form inputs, query responses, mutation payloads, server validation).
+- Types are derived via `z.infer<typeof xSchema>` and exported alongside their schema. Never hand-write a TS type that's already covered by a Zod schema — let inference do it.
+- Consumers in the same feature (queries, mutations, components, route loaders/actions) import from `./schemas`.
+- Cross-feature consumers import via the public barrel only.
+- Example:
+  ```ts
+  // features/auth/schemas.ts
+  import { z } from "zod"
+
+  export const loginSchema = z.object({
+    email: z.string().email(),
+    password: z.string().min(10),
+  })
+  export type LoginInput = z.infer<typeof loginSchema>
+  ```
+
+### Barrel rules
+
+- Import features only via the public barrel: `import { useLoginMutation, loginSchema, type LoginInput } from "~/features/auth"`.
+- Cross-feature imports go through the barrel — never reach into `queries.ts` or `schemas.ts` directly.
 - Query keys use the `<feature>Keys` factory pattern with `all` root + scoped sub-keys.
 - Mutations invalidate via `queryKey: <feature>Keys.all` (or narrower) on success.
+
+### Note on the word "schema"
+
+- `features/<x>/schemas.ts` → **Zod** validation schemas + inferred types.
+- `db/schema/` → **Drizzle** table definitions.
+- These are independent; never conflate them.
 
 ## React Query
 
@@ -103,9 +137,25 @@ Rules:
 
 ## Components
 
-- `components/ui/` — shadcn primitives only. Add via shadcn CLI.
+- `components/ui/` — shadcn primitives only. Add via `pnpm dlx shadcn@latest add <name>`.
+- All Radix primitives come from the `radix-ui` umbrella package: `import { Label as LabelPrimitive, Slot } from "radix-ui"` then `Slot.Root`, `LabelPrimitive.Root`. Never install or import from `@radix-ui/react-*` split packages.
+- `components/ui/form.tsx` is maintained manually (shadcn deprecated the registry entry). It wires `react-hook-form` to shadcn primitives.
 - Reusable cross-feature components go in `components/` (not `ui/`).
 - Feature-scoped components stay inside `features/<feature>/components/`.
+
+## Forms
+
+- All forms: `react-hook-form` + Zod schema via `@hookform/resolvers/zod`.
+- Use the `Form`, `FormField`, `FormItem`, `FormLabel`, `FormControl`, `FormMessage` primitives from `~/components/ui/form`.
+- The Zod schema lives in the feature's `schemas.ts` and is imported via the barrel — never duplicate the validation rules at the form site.
+
+## Database
+
+- Drizzle schema lives in `db/schema/` (split per domain), exported from `db/schema/index.ts`.
+- `drizzle.config.ts` at repo root.
+- Migrations: `pnpm db:generate` (Drizzle Kit) then `pnpm db:migrate`.
+- Seeds (E10): `db/seeds/` using `drizzle-seed`; entry `pnpm db:seed` chained by `pnpm db:reset`.
+- DB client: `app/lib/db.ts` exports a singleton; SSR loaders import this directly.
 
 ## Routes
 

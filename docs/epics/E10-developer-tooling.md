@@ -72,11 +72,23 @@ Make local development fast and deterministic. A fresh checkout should reach a u
 
 ## Technical notes
 
+- Seed framework: **`drizzle-seed`** (https://orm.drizzle.team/docs/seed-overview). Use its deterministic generators where possible so re-runs produce the same data; use overrides for the fixed admin/user emails.
 - All seeds live in `db/seeds/*.ts`, not under `app/`. Keep dev-only code out of the runtime bundle.
 - Each seed step uses upserts keyed on a stable identifier (email for users, slug for orgs) so re-runs are safe.
-- Seed entry-point script uses the same DB client/ORM as the app — no separate "seed-only" connection layer.
+- Seed entry-point uses the same Drizzle client as the app — no separate "seed-only" connection layer.
 - Dev passwords stored in `.env.example` are committed; real `.env` is gitignored. Dev passwords are NEVER acceptable for production seed data — Phase 2 production seed (if any) prompts for or generates per-deploy secrets.
 - The `email_outbox` table is created in the regular migration set (used in dev). In production with a real provider, the outbox table can be repurposed as a delivery log or left empty.
+- Layout suggestion:
+  ```
+  db/
+    schema/             # Drizzle schema (split per domain)
+    seeds/
+      users.ts          # S10.1
+      orgs.ts           # S10.2
+      ledger.ts         # S10.3
+      index.ts          # entry chained by pnpm db:reset (S10.5)
+    drizzle.config.ts
+  ```
 
 ## Definition of done
 
