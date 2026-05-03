@@ -13,20 +13,20 @@
 ## Overall
 
 - **Stories total:** 60
-- **Done:** 4
+- **Done:** 5
 - **WIP:** 0
-- **Overall progress:** 6.7%
+- **Overall progress:** 8.3%
 - **MVP (P0 only) total:** 45
-- **MVP done:** 4
-- **MVP progress:** 8.9%
+- **MVP done:** 5
+- **MVP progress:** 11.1%
 
-_Last updated: 2026-05-03 — S1.7 done_
+_Last updated: 2026-05-03 — S1.4 done_
 
 ## Per-epic rollup
 
 | Epic | Stories | Done | WIP | % | Status |
 |---|---:|---:|---:|---:|---|
-| E1 — Identity & Access | 7 | 4 | 0 | 57% | wip |
+| E1 — Identity & Access | 7 | 5 | 0 | 71% | wip |
 | E2 — Organization Lifecycle | 9 | 0 | 0 | 0% | planned |
 | E3 — Members & Categories | 6 | 0 | 0 | 0% | planned |
 | E4 — Money Movement | 6 | 0 | 0 | 0% | planned |
@@ -44,7 +44,7 @@ _Last updated: 2026-05-03 — S1.7 done_
 - [x] `S1.1` [P0] Email + password signup (email, first name, last name, gender, password) — **done**
 - [x] `S1.2` [P0] Login (rejects inactive users) — **done**
 - [x] `S1.3` [P0] Logout — **done**
-- [ ] `S1.4` [P0] Layout swap by platform role — **todo**
+- [x] `S1.4` [P0] Layout swap by platform role — **done**
 - [ ] `S1.5` [P0] Active-org switcher — **todo**
 - [ ] `S1.6` [P1] Password reset by email (uses dev outbox in MVP) — **todo**
 - [x] `S1.7` [P0] User account active flag — **done**
