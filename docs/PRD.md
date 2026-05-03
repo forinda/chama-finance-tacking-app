@@ -68,7 +68,7 @@ A user can belong to N organizations with different roles in each.
 ## 5. Domain Model
 
 ```
-User { id, email, firstName, lastName, passwordHash, platformRole: user|super_admin, isActive, mustChangePassword, createdAt, … }
+User { id, email, firstName, lastName, gender: male|female|other (default 'other'), passwordHash, platformRole: user|super_admin, isActive, mustChangePassword, createdAt, … }
   └─ Membership { user_id, org_id, role: owner|treasurer|member }
 
 Organization { id, name, plan, created_at }   -- currency is a system constant (KES); not stored per-org
