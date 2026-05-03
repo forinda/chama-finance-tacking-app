@@ -13,7 +13,7 @@
 import { desc, eq } from "drizzle-orm"
 import { Link, redirect } from "react-router"
 
-import { memberships, organizations, users } from "../../db/schema"
+import { memberships, organizations, users } from "@db/schema"
 import { LogoutButton } from "~/features/auth"
 import { CreateOrgForm } from "~/features/orgs"
 import { db } from "~/lib/db"

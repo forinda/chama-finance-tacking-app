@@ -23,7 +23,7 @@
  */
 import { eq } from "drizzle-orm"
 
-import { sessions, users, type User } from "../../db/schema"
+import { sessions, users, type User } from "@db/schema"
 import { logAudit } from "./audit.server"
 import { db } from "./db"
 

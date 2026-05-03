@@ -18,7 +18,7 @@
  * The full `withAudit()` wrapper (auto-derives before/after, infers entity
  * from table) lands in story S7.1; this is the minimal version.
  */
-import { auditLog, type NewAuditEntry } from "../../db/schema"
+import { auditLog, type NewAuditEntry } from "@db/schema"
 import { db } from "./db"
 
 // Extract the transaction type directly from `db.transaction`'s callback so

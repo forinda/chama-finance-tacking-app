@@ -27,7 +27,7 @@
 import { and, count, eq, gte, sql } from "drizzle-orm"
 import { z } from "zod"
 
-import { loginAttempts, users } from "../../../../db/schema"
+import { loginAttempts, users } from "@db/schema"
 import { extractRequestMeta, logAudit } from "~/lib/audit.server"
 import { landingPathForRole } from "~/lib/auth.server"
 import { db } from "~/lib/db"

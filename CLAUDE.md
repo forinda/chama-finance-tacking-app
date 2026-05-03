@@ -10,7 +10,9 @@ Stack:
 - **Auth**: argon2id password hashing, DB-backed sessions
 - **Dates**: date-fns
 
-Path alias: `~/*` → `./app/*`.
+Path aliases:
+- `~/*` → `./app/*`
+- `@db/*` → `./db/*` (Drizzle schema, migrations, seeds — keep them out of `app/`)
 
 ## Documentation
 

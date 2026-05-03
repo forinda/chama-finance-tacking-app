@@ -5,7 +5,7 @@
  * action, signup action, login page loader, and root redirects all
  * agree on where to send a user given their `platformRole`.
  */
-import type { User } from "../../db/schema"
+import type { User } from "@db/schema"
 
 export type PlatformRole = User["platformRole"]
 
