@@ -29,6 +29,7 @@ import { z } from "zod"
 
 import { loginAttempts, users } from "../../../../db/schema"
 import { extractRequestMeta, logAudit } from "~/lib/audit.server"
+import { landingPathForRole } from "~/lib/auth.server"
 import { db } from "~/lib/db"
 import { hashPassword, verifyPassword } from "~/lib/password.server"
 import { sessionStorage } from "~/lib/session.server"
@@ -145,10 +146,14 @@ export async function action({ request }: Route.ActionArgs) {
     userAgent: meta.userAgent,
   })
 
-  // E1 S1.4 will replace this redirectTo with role-aware routing
-  // (`super_admin` → /admin, others → /onboarding or active-org dashboard).
+  // Role-aware landing — super_admin straight to /admin, others to
+  // /onboarding (later replaced by the user's active-org dashboard).
   return Response.json(
-    { ok: true, userId: user!.id, redirectTo: "/onboarding" },
+    {
+      ok: true,
+      userId: user!.id,
+      redirectTo: landingPathForRole(user!.platformRole),
+    },
     { headers: { "Set-Cookie": setCookie } },
   )
 }
