@@ -29,4 +29,5 @@ export default [
   route("api/v1/auth/signup", "features/auth/routes/api.signup.tsx"),
   route("api/v1/auth/login", "features/auth/routes/api.login.tsx"),
   route("api/v1/auth/logout", "features/auth/routes/api.logout.tsx"),
+  route("api/v1/organizations", "features/orgs/routes/api.create.tsx"),
 ] satisfies RouteConfig

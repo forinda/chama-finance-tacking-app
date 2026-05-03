@@ -13,21 +13,21 @@
 ## Overall
 
 - **Stories total:** 60
-- **Done:** 5
+- **Done:** 6
 - **WIP:** 0
-- **Overall progress:** 8.3%
+- **Overall progress:** 10.0%
 - **MVP (P0 only) total:** 45
-- **MVP done:** 5
-- **MVP progress:** 11.1%
+- **MVP done:** 6
+- **MVP progress:** 13.3%
 
-_Last updated: 2026-05-03 — S1.4 done_
+_Last updated: 2026-05-03 — S2.1 done_
 
 ## Per-epic rollup
 
 | Epic | Stories | Done | WIP | % | Status |
 |---|---:|---:|---:|---:|---|
 | E1 — Identity & Access | 7 | 5 | 0 | 71% | wip |
-| E2 — Organization Lifecycle | 9 | 0 | 0 | 0% | planned |
+| E2 — Organization Lifecycle | 9 | 1 | 0 | 11% | wip |
 | E3 — Members & Categories | 6 | 0 | 0 | 0% | planned |
 | E4 — Money Movement | 6 | 0 | 0 | 0% | planned |
 | E5 — Ledger & Reporting | 8 | 0 | 0 | 0% | planned |
@@ -50,7 +50,7 @@ _Last updated: 2026-05-03 — S1.4 done_
 - [x] `S1.7` [P0] User account active flag — **done**
 
 ### E2 — Organization Lifecycle
-- [ ] `S2.1` [P0] Create organization (name only; KES system-wide) — **todo**
+- [x] `S2.1` [P0] Create organization (name only; KES system-wide) — **done**
 - [ ] `S2.2` [P0] Seed default chart of accounts — **todo**
 - [ ] `S2.3` [P0] Add existing user to org (email lookup) — **todo**
 - [ ] `S2.4` [P0] Owner creates new user account and adds them — **todo**

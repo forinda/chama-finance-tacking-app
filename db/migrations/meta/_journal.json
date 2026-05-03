@@ -15,6 +15,13 @@
       "when": 1777787926011,
       "tag": "0001_breezy_night_thrasher",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1777789898477,
+      "tag": "0002_ordinary_roulette",
+      "breakpoints": true
     }
   ]
 }
