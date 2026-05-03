@@ -13,20 +13,20 @@
 ## Overall
 
 - **Stories total:** 60
-- **Done:** 3
+- **Done:** 4
 - **WIP:** 0
-- **Overall progress:** 5.0%
+- **Overall progress:** 6.7%
 - **MVP (P0 only) total:** 45
-- **MVP done:** 3
-- **MVP progress:** 6.7%
+- **MVP done:** 4
+- **MVP progress:** 8.9%
 
-_Last updated: 2026-05-03 — S1.3 done_
+_Last updated: 2026-05-03 — S1.7 done_
 
 ## Per-epic rollup
 
 | Epic | Stories | Done | WIP | % | Status |
 |---|---:|---:|---:|---:|---|
-| E1 — Identity & Access | 7 | 3 | 0 | 43% | wip |
+| E1 — Identity & Access | 7 | 4 | 0 | 57% | wip |
 | E2 — Organization Lifecycle | 9 | 0 | 0 | 0% | planned |
 | E3 — Members & Categories | 6 | 0 | 0 | 0% | planned |
 | E4 — Money Movement | 6 | 0 | 0 | 0% | planned |
@@ -47,7 +47,7 @@ _Last updated: 2026-05-03 — S1.3 done_
 - [ ] `S1.4` [P0] Layout swap by platform role — **todo**
 - [ ] `S1.5` [P0] Active-org switcher — **todo**
 - [ ] `S1.6` [P1] Password reset by email (uses dev outbox in MVP) — **todo**
-- [ ] `S1.7` [P0] User account active flag — **todo**
+- [x] `S1.7` [P0] User account active flag — **done**
 
 ### E2 — Organization Lifecycle
 - [ ] `S2.1` [P0] Create organization (name only; KES system-wide) — **todo**

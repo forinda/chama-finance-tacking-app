@@ -10,3 +10,6 @@
 /.playwright-mcp/
 *.png
 *.jpeg
+
+# One-off local verifier scripts (committed code goes through tests, not these)
+*.local.ts
