@@ -55,6 +55,10 @@ Branch naming:
 - Cross-cutting epic infra (rare): `feat/e<id>-<kebab-title>` — e.g. `feat/e7-audit-log-infra`
 - Hotfixes / chores: `chore/<kebab-title>` or `fix/<kebab-title>`
 
+Multi-line commit / PR bodies:
+- Don't inline heredocs for `gh pr create --body` or `git commit -m` — backticks, dollar signs and quotes interact badly with the shell on macOS and silently mangle the output.
+- Write the body to a temp file (`/tmp/pr-body.md`, `/tmp/commit-msg.txt`) and pass `gh pr create --body-file /tmp/pr-body.md` or `git commit -F /tmp/commit-msg.txt`.
+
 When the user asks "where are we?" or "what's the status?", read `docs/PROGRESS.md` and report the percentages — overall + MVP + per-epic.
 
 ## Status states

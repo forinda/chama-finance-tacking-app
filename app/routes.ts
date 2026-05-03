@@ -12,4 +12,5 @@ export default [
   // routes have no default export and return Response objects only.
   route("api/v1/auth/signup", "features/auth/routes/api.signup.tsx"),
   route("api/v1/auth/login", "features/auth/routes/api.login.tsx"),
+  route("api/v1/auth/logout", "features/auth/routes/api.logout.tsx"),
 ] satisfies RouteConfig

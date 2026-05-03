@@ -107,3 +107,30 @@ export function useLoginMutation() {
     },
   })
 }
+
+// ---------------------------------------------------------------------------
+// Logout
+// ---------------------------------------------------------------------------
+
+export type LogoutSuccess = {
+  ok: true
+  redirectTo: string
+}
+
+async function postLogout(): Promise<LogoutSuccess> {
+  const { data } = await apiClient.post<LogoutSuccess>("/auth/logout")
+  return data
+}
+
+export function useLogoutMutation() {
+  const qc = useQueryClient()
+  return useMutation<LogoutSuccess, Error, void>({
+    mutationFn: postLogout,
+    onSuccess: () => {
+      // Session is gone — drop every cached query so a fresh login starts
+      // with empty caches. `invalidateQueries({ queryKey: authKeys.all })`
+      // would refetch; logout wants a hard wipe.
+      qc.clear()
+    },
+  })
+}
