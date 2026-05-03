@@ -12,7 +12,7 @@ import axios from "axios"
 import { apiClient, type ApiFieldErrors } from "~/lib/api-client"
 
 import { authKeys } from "./keys"
-import type { SignupInput } from "./schemas"
+import type { LoginInput, SignupInput } from "./schemas"
 
 export type SignupSuccess = {
   ok: true
@@ -52,6 +52,55 @@ export function useSignupMutation() {
   const qc = useQueryClient()
   return useMutation<SignupSuccess, SignupError, SignupInput>({
     mutationFn: postSignup,
+    onSuccess: () => {
+      // Session changed — wipe any cached auth queries so they refetch.
+      qc.invalidateQueries({ queryKey: authKeys.all })
+    },
+  })
+}
+
+// ---------------------------------------------------------------------------
+// Login
+// ---------------------------------------------------------------------------
+
+export type LoginSuccess = {
+  ok: true
+  userId: string
+  redirectTo: string
+}
+
+export type LoginErrorPayload = {
+  errors?: ApiFieldErrors<keyof LoginInput>
+  formError?: string
+}
+
+export class LoginError extends Error {
+  status: number
+  payload: LoginErrorPayload
+
+  constructor(status: number, payload: LoginErrorPayload) {
+    super(payload.formError ?? "Login failed")
+    this.status = status
+    this.payload = payload
+  }
+}
+
+async function postLogin(input: LoginInput): Promise<LoginSuccess> {
+  try {
+    const { data } = await apiClient.post<LoginSuccess>("/auth/login", input)
+    return data
+  } catch (err) {
+    if (axios.isAxiosError(err) && err.response) {
+      throw new LoginError(err.response.status, err.response.data ?? {})
+    }
+    throw err
+  }
+}
+
+export function useLoginMutation() {
+  const qc = useQueryClient()
+  return useMutation<LoginSuccess, LoginError, LoginInput>({
+    mutationFn: postLogin,
     onSuccess: () => {
       // Session changed — wipe any cached auth queries so they refetch.
       qc.invalidateQueries({ queryKey: authKeys.all })

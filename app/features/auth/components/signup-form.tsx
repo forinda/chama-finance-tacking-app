@@ -21,7 +21,7 @@
 import * as React from "react"
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema"
 import { useForm } from "react-hook-form"
-import { useNavigate } from "react-router"
+import { Link, useNavigate } from "react-router"
 
 import { Button } from "~/components/ui/button"
 import {
@@ -219,6 +219,16 @@ export function SignupForm() {
             <Button type="submit" disabled={isSubmitting} className="w-full">
               {isSubmitting ? "Creating account…" : "Create account"}
             </Button>
+
+            <p className="text-center text-sm text-muted-foreground">
+              Already have an account?{" "}
+              <Link
+                to="/auth/login"
+                className="font-medium text-foreground underline-offset-4 hover:underline"
+              >
+                Log in
+              </Link>
+            </p>
           </form>
         </Form>
       </CardContent>
