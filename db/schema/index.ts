@@ -1,5 +1,7 @@
 export * from "./enums"
 export * from "./users"
+export * from "./organizations"
+export * from "./memberships"
 export * from "./sessions"
 export * from "./audit-log"
 export * from "./login-attempts"
